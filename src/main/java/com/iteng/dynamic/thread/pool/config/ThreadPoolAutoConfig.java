@@ -87,6 +87,12 @@ public class ThreadPoolAutoConfig {
             Integer queueCapacity = threadPoolConfig.getQueueCapacity();
             Boolean queueWarn = threadPoolConfig.getQueueWarn();
             Integer queueWarnThreshold = threadPoolConfig.getQueueWarnThreshold();
+            Boolean queueAdapt = threadPoolConfig.getQueueAdapt();
+            Integer queueAdaptThreshold = threadPoolConfig.getQueueAdaptThreshold();
+            Integer queueAdaptMaxCapacity = threadPoolConfig.getQueueAdaptMaxCapacity();
+            Boolean threadAdapt = threadPoolConfig.getThreadAdapt();
+            Integer threadAdaptThreshold = threadPoolConfig.getThreadAdaptThreshold();
+            Integer threadAdaptMaximumPoolSize = threadPoolConfig.getThreadAdaptMaximumPoolSize();
 
             // 填充线程池Map
             if (threadPoolExecutorMap != null) {
@@ -106,7 +112,9 @@ public class ThreadPoolAutoConfig {
             }
 
             // 填充配置Map
-            ThreadPoolConfig config = new ThreadPoolConfig(threadPoolName, corePoolSize, maximumPoolSize, queueCapacity, queueWarn, queueWarnThreshold);
+            ThreadPoolConfig config = new ThreadPoolConfig(threadPoolName, corePoolSize, maximumPoolSize,
+                    queueCapacity, queueWarn, queueWarnThreshold, queueAdapt, queueAdaptThreshold,
+                    queueAdaptMaxCapacity, threadAdapt, threadAdaptThreshold, threadAdaptMaximumPoolSize);
             threadPoolExecutorConfigMap.put(threadPoolName, config);
         }
     }

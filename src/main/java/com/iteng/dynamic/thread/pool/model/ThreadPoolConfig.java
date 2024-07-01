@@ -35,13 +35,51 @@ public class ThreadPoolConfig {
      */
     private Integer queueWarnThreshold;
 
-    public ThreadPoolConfig(String threadPoolName, Integer corePoolSize, Integer maximumPoolSize, Integer queueCapacity, Boolean queueWarn, Integer queueWarnThreshold) {
+    /**
+     * 队列是否自适应
+     */
+    private Boolean queueAdapt;
+
+    /**
+     * 队列自适应阈值
+     */
+    private Integer queueAdaptThreshold;
+
+    /**
+     * 队列自适应最大值
+     */
+    private Integer queueAdaptMaxCapacity;
+
+    /**
+     * 线程是否自适应
+     */
+    private Boolean threadAdapt;
+
+    /**
+     * 线程自适应阈值
+     */
+    private Integer threadAdaptThreshold;
+
+    /**
+     * 线程自适应最大值
+     */
+    private Integer threadAdaptMaximumPoolSize;
+
+    public ThreadPoolConfig(String threadPoolName, Integer corePoolSize, Integer maximumPoolSize, Integer queueCapacity,
+                            Boolean queueWarn, Integer queueWarnThreshold, Boolean queueAdapt, Integer queueAdaptThreshold,
+                            Integer queueAdaptMaxCapacity, Boolean threadAdapt, Integer threadAdaptThreshold, Integer threadAdaptMaximumPoolSize) {
         ThreadPoolName = threadPoolName;
         this.corePoolSize = corePoolSize;
         this.maximumPoolSize = maximumPoolSize;
         this.queueCapacity = queueCapacity;
         this.queueWarn = queueWarn;
         this.queueWarnThreshold = queueWarnThreshold;
+        this.queueAdapt = queueAdapt;
+        this.queueAdaptThreshold = queueAdaptThreshold;
+        this.queueAdaptMaxCapacity = queueAdaptMaxCapacity;
+        this.threadAdapt = threadAdapt;
+        this.threadAdaptThreshold = threadAdaptThreshold;
+        this.threadAdaptMaximumPoolSize = threadAdaptMaximumPoolSize;
     }
 
     public String getThreadPoolName() {
@@ -90,5 +128,53 @@ public class ThreadPoolConfig {
 
     public void setQueueWarnThreshold(Integer queueWarnThreshold) {
         this.queueWarnThreshold = queueWarnThreshold;
+    }
+
+    public Boolean getQueueAdapt() {
+        return queueAdapt;
+    }
+
+    public void setQueueAdapt(Boolean queueAdapt) {
+        this.queueAdapt = queueAdapt;
+    }
+
+    public Integer getQueueAdaptThreshold() {
+        return queueAdaptThreshold;
+    }
+
+    public void setQueueAdaptThreshold(Integer queueAdaptThreshold) {
+        this.queueAdaptThreshold = queueAdaptThreshold;
+    }
+
+    public Integer getQueueAdaptMaxCapacity() {
+        return queueAdaptMaxCapacity;
+    }
+
+    public void setQueueAdaptMaxCapacity(Integer queueAdaptMaxCapacity) {
+        this.queueAdaptMaxCapacity = queueAdaptMaxCapacity;
+    }
+
+    public Boolean getThreadAdapt() {
+        return threadAdapt;
+    }
+
+    public void setThreadAdapt(Boolean threadAdapt) {
+        this.threadAdapt = threadAdapt;
+    }
+
+    public Integer getThreadAdaptThreshold() {
+        return threadAdaptThreshold;
+    }
+
+    public void setThreadAdaptThreshold(Integer threadAdaptThreshold) {
+        this.threadAdaptThreshold = threadAdaptThreshold;
+    }
+
+    public Integer getThreadAdaptMaximumPoolSize() {
+        return threadAdaptMaximumPoolSize;
+    }
+
+    public void setThreadAdaptMaximumPoolSize(Integer threadAdaptMaximumPoolSize) {
+        this.threadAdaptMaximumPoolSize = threadAdaptMaximumPoolSize;
     }
 }

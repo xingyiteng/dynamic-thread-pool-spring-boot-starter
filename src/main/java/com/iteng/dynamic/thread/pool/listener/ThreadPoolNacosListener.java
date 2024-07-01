@@ -72,6 +72,12 @@ public class ThreadPoolNacosListener {
         Integer queueCapacity = threadPoolConfig.getQueueCapacity();
         Boolean queueWarn = threadPoolConfig.getQueueWarn();
         Integer queueWarnThreshold = threadPoolConfig.getQueueWarnThreshold();
+        Boolean queueAdapt = threadPoolConfig.getQueueAdapt();
+        Integer queueAdaptThreshold = threadPoolConfig.getQueueAdaptThreshold();
+        Integer queueAdaptMaxCapacity = threadPoolConfig.getQueueAdaptMaxCapacity();
+        Boolean threadAdapt = threadPoolConfig.getThreadAdapt();
+        Integer threadAdaptThreshold = threadPoolConfig.getThreadAdaptThreshold();
+        Integer threadAdaptMaximumPoolSize = threadPoolConfig.getThreadAdaptMaximumPoolSize();
 
         // 更新线程池Map
         ThreadPoolExecutor threadPoolExecutor = threadPoolManager.getThreadPoolMap().get(threadPoolName);
@@ -97,8 +103,16 @@ public class ThreadPoolNacosListener {
             config.setQueueCapacity(queueCapacity);
             config.setQueueWarn(queueWarn);
             config.setQueueWarnThreshold(queueWarnThreshold);
+            config.setQueueAdapt(queueAdapt);
+            config.setQueueAdaptThreshold(queueAdaptThreshold);
+            config.setQueueAdaptMaxCapacity(queueAdaptMaxCapacity);
+            config.setThreadAdapt(threadAdapt);
+            config.setThreadAdaptThreshold(threadAdaptThreshold);
+            config.setThreadAdaptMaximumPoolSize(threadAdaptMaximumPoolSize);
         }else {
-            ThreadPoolConfig tpc = new ThreadPoolConfig(threadPoolName, corePoolSize, maximumPoolSize, queueCapacity, queueWarn, queueWarnThreshold);
+            ThreadPoolConfig tpc = new ThreadPoolConfig(threadPoolName, corePoolSize, maximumPoolSize,
+                    queueCapacity, queueWarn, queueWarnThreshold, queueAdapt, queueAdaptThreshold,
+                    queueAdaptMaxCapacity, threadAdapt, threadAdaptThreshold, threadAdaptMaximumPoolSize);
             threadPoolConfigMap.put(threadPoolName, tpc);
         }
         logger.info("动态线程池 - {}线程池配置更改成功。配置信息：{}", threadPoolName, JSON.toJSON(threadPoolConfig));
