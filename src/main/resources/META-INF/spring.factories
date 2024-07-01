@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.iteng.dynamic.thread.pool.config.ThreadPoolAutoConfig,\
+com.iteng.dynamic.thread.pool.config.ThreadPoolNacosAutoConfig
