@@ -1,0 +1,102 @@
+{
+  "templating": {
+    "list": [
+      {
+        "name": "application",
+        "type": "query",
+        "label": "Application",
+        "query": "label_values(thread_pool_core_size{app_name=~\".*\"}, \"app_name\")",
+        "refresh": 1,
+        "current": {
+          "text": "test-app",
+          "value": "test-app"
+        },
+        "includeAll": true,
+        "multi": true
+      },
+      {
+        "name": "threadpool",
+        "type": "query",
+        "label": "Thread Pool",
+        "query": "label_values(thread_pool_core_size{app_name=\"$application\"}, \"thread_pool_name\")",
+        "refresh": 1,
+        "current": {
+          "text": "threadPoolExecutor01",
+          "value": "threadPoolExecutor01"
+        },
+        "includeAll": true,
+        "multi": true
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Thread Pool Active Count",
+      "targets": [
+        {
+          "expr": "thread_pool_active_count{app_name=\"$application\", thread_pool_name=\"$threadpool\"}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Thread Pool Maximum Size",
+      "targets": [
+        {
+          "expr": "thread_pool_maximum_size{app_name=\"$application\", thread_pool_name=\"$threadpool\"}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Thread Pool Completed Task Count",
+      "targets": [
+        {
+          "expr": "thread_pool_completed_task_count{app_name=\"$application\", thread_pool_name=\"$threadpool\"}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Thread Pool Core Size",
+      "targets": [
+        {
+          "expr": "thread_pool_core_size{app_name=\"$application\", thread_pool_name=\"$threadpool\"}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Thread Pool Task Count",
+      "targets": [
+        {
+          "expr": "thread_pool_task_count{app_name=\"$application\", thread_pool_name=\"$threadpool\"}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Thread Pool Current Size",
+      "targets": [
+        {
+          "expr": "thread_pool_current_size{app_name=\"$application\", thread_pool_name=\"$threadpool\"}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Thread Pool Largest Size",
+      "targets": [
+        {
+          "expr": "thread_pool_largest_size{app_name=\"$application\", thread_pool_name=\"$threadpool\"}"
+        }
+      ]
+    }
+  ],
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "refresh": "5s"
+}
