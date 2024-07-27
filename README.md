@@ -1,14 +1,17 @@
 # 功能模块
 
-- [x] 支持运行时动态调整线程池参数。
-- [x] 支持基于Nacos的配置中心。
+- [x] 支持运行时动态调整核心、最大线程数、任务队列长度。
+- [x] 支持基于Nacos的配置中心，可扩展其他配置中心。
 - [x] 集成prometheus埋点采集，grafana可视化展示。
 - [x] 定时检测线程池资源使用，触发阈值启动报警通知。
 - [x] 提供多种维度报警。例如：参数变更、队列阈值触发等。
-- [x] 设计并实现线程池参数的自适应调整。
+- [x] 自主设计并实现线程池参数的自适应调整。
 
 # 系统架构图
 ![img.png](resources/架构图.png)
+
+# 系统流程图
+![img.png](resources/流程图.png)
 
 # 使用说明
 
@@ -77,7 +80,7 @@ DataId：`thread:pool:`applicaionName
 
 Group：`dynamic_thread_pool`
 
-~~~java
+~~~yml
 [{
     "threadPoolName": "threadPoolExecutor01", // 线程池对象Bean名称
     "corePoolSize": 8, // 核心线程数
